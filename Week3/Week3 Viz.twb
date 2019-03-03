@@ -1,0 +1,255 @@
+<?xml version='1.0' encoding='utf-8' ?>
+
+<!-- build 20191.19.0213.2333                               -->
+<workbook original-version='18.1' source-build='2019.1.0 (20191.19.0213.2333)' source-platform='win' version='18.1' xmlns:user='http://www.tableausoftware.com/xml/user'>
+  <document-format-change-manifest>
+    <SheetIdentifierTracking />
+    <WindowsPersistSimpleIdentifiers />
+  </document-format-change-manifest>
+  <preferences>
+    <preference name='ui.encoding.shelf.height' value='24' />
+    <preference name='ui.shelf.height' value='26' />
+  </preferences>
+  <datasources>
+    <datasource caption='Output Extract' inline='true' name='federated.19lrvth0msq2lr125rlm91g3onhl' version='18.1'>
+      <connection class='federated'>
+        <named-connections>
+          <named-connection caption='Output' name='hyper.1x4s2bf0jhn3d01bbzg951g8zm4f'>
+            <connection authentication='auth-none' author-locale='en_US' class='hyper' db-format='dataengine' dbname='D:/Tableau/PrepinData/Week3/Output.tde' default-settings='yes' sslmode='' username='tableau_internal_user' />
+          </named-connection>
+        </named-connections>
+        <relation connection='hyper.1x4s2bf0jhn3d01bbzg951g8zm4f' name='Extract' table='[Extract].[Extract]' type='table' />
+        <metadata-records>
+          <metadata-record class='column'>
+            <remote-name>Payment Date</remote-name>
+            <remote-type>133</remote-type>
+            <local-name>[Payment Date]</local-name>
+            <parent-name>[Extract]</parent-name>
+            <remote-alias>Payment Date</remote-alias>
+            <ordinal>0</ordinal>
+            <local-type>date</local-type>
+            <aggregation>Year</aggregation>
+            <approx-count>54</approx-count>
+            <contains-null>false</contains-null>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Name</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[Name]</local-name>
+            <parent-name>[Extract]</parent-name>
+            <remote-alias>Name</remote-alias>
+            <ordinal>1</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <approx-count>4</approx-count>
+            <contains-null>false</contains-null>
+            <collation flag='0' name='LEN_RGB' />
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Monthly Cost</remote-name>
+            <remote-type>2</remote-type>
+            <local-name>[Monthly Cost]</local-name>
+            <parent-name>[Extract]</parent-name>
+            <remote-alias>Monthly Cost</remote-alias>
+            <ordinal>2</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <approx-count>4</approx-count>
+            <contains-null>false</contains-null>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Contract Length (months)</remote-name>
+            <remote-type>2</remote-type>
+            <local-name>[Contract Length (months)]</local-name>
+            <parent-name>[Extract]</parent-name>
+            <remote-alias>Contract Length (months)</remote-alias>
+            <ordinal>3</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <approx-count>3</approx-count>
+            <contains-null>false</contains-null>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Start Date</remote-name>
+            <remote-type>133</remote-type>
+            <local-name>[Start Date]</local-name>
+            <parent-name>[Extract]</parent-name>
+            <remote-alias>Start Date</remote-alias>
+            <ordinal>4</ordinal>
+            <local-type>date</local-type>
+            <aggregation>Year</aggregation>
+            <approx-count>4</approx-count>
+            <contains-null>false</contains-null>
+          </metadata-record>
+        </metadata-records>
+      </connection>
+      <column datatype='integer' name='[Number of Records]' role='measure' type='quantitative' user:auto-column='numrec'>
+        <calculation class='tableau' formula='1' />
+      </column>
+      <layout dim-ordering='alphabetic' dim-percentage='0.5' measure-ordering='alphabetic' measure-percentage='0.5' show-structure='true' />
+      <semantic-values>
+        <semantic-value key='[Country].[Name]' value='&quot;India&quot;' />
+      </semantic-values>
+    </datasource>
+  </datasources>
+  <worksheets>
+    <worksheet name='Sheet 1'>
+      <layout-options>
+        <title>
+          <formatted-text>
+            <run>MOBILE PHONE PAYMENTS</run>
+          </formatted-text>
+        </title>
+      </layout-options>
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='Output Extract' name='federated.19lrvth0msq2lr125rlm91g3onhl' />
+          </datasources>
+          <datasource-dependencies datasource='federated.19lrvth0msq2lr125rlm91g3onhl'>
+            <column datatype='integer' name='[Monthly Cost]' role='measure' type='quantitative' />
+            <column datatype='date' name='[Payment Date]' role='dimension' type='ordinal' />
+            <column-instance column='[Monthly Cost]' derivation='Sum' name='[sum:Monthly Cost:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[Payment Date]' derivation='Month-Trunc' name='[tmn:Payment Date:ok]' pivot='key' type='ordinal' />
+            <column-instance column='[Payment Date]' derivation='Month-Trunc' name='[tmn:Payment Date:qk]' pivot='key' type='quantitative' />
+          </datasource-dependencies>
+          <aggregation value='true' />
+        </view>
+        <style />
+        <panes>
+          <pane selection-relaxation-option='selection-relaxation-allow'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Bar' />
+            <mark-sizing custom-mark-size-in-axis-units='1.0' mark-alignment='mark-alignment-left' mark-sizing-setting='marks-scaling-on' use-custom-mark-size='false' />
+            <encodings>
+              <lod column='[federated.19lrvth0msq2lr125rlm91g3onhl].[tmn:Payment Date:ok]' />
+            </encodings>
+          </pane>
+        </panes>
+        <rows>[federated.19lrvth0msq2lr125rlm91g3onhl].[sum:Monthly Cost:qk]</rows>
+        <cols>[federated.19lrvth0msq2lr125rlm91g3onhl].[tmn:Payment Date:qk]</cols>
+      </table>
+      <simple-id uuid='{201390D0-C56D-4F1F-BA5A-C61FB9F08D14}' />
+    </worksheet>
+  </worksheets>
+  <windows source-height='30'>
+    <window class='worksheet' maximized='true' name='Sheet 1'>
+      <cards>
+        <edge name='left'>
+          <strip size='160'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='2147483647'>
+            <card type='columns' />
+          </strip>
+          <strip size='2147483647'>
+            <card type='rows' />
+          </strip>
+          <strip size='31'>
+            <card type='title' />
+          </strip>
+        </edge>
+      </cards>
+      <viewpoint>
+        <highlight>
+          <color-one-way>
+            <field>[federated.19lrvth0msq2lr125rlm91g3onhl].[yr:Payment Date:ok]</field>
+          </color-one-way>
+        </highlight>
+      </viewpoint>
+      <simple-id uuid='{D5730900-2EC6-42FA-B87E-A20B5F5FD155}' />
+    </window>
+  </windows>
+  <thumbnails>
+    <thumbnail height='192' name='Sheet 1' width='192'>
+      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
+    </thumbnail>
+  </thumbnails>
+</workbook>
